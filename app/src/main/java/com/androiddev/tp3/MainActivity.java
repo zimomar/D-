@@ -1,13 +1,13 @@
 package com.androiddev.tp3;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView de3;
     private Random rand = new Random();
     private int sound;
-
+    private TextView resultat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         de2 = (ImageView) findViewById(R.id.de2);
         de3 = (ImageView) findViewById(R.id.de3);
         lancer = (Button) findViewById(R.id.buttonMelange);
+        resultat = (TextView) findViewById(R.id.resultat);
 
         lancer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +71,12 @@ public class MainActivity extends AppCompatActivity {
         de1.setImageResource(res1);
         de2.setImageResource(res2);
         de3.setImageResource(res3);
+
+        int res = value1+value2+value3;
+
+        resultat.setText(Integer.toString(res));
     }
+
     public void InitSon(){
         this.soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
         this.sound = soundPool.load("this.R.raw.shake_dice",1);
